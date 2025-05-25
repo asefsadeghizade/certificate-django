@@ -27,7 +27,18 @@ SECRET_KEY = 'django-insecure-=c(8r%54(b=b(-$=qe++cp*@z(os8j129!ifdrabtp4)a#aio-
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['*']  # Allow all hosts for now
+ALLOWED_HOSTS = [
+    'localhost',
+    '127.0.0.1',
+    'fastapi-app.liara.run',
+    '.liara.run'  # This will allow all subdomains of liara.run
+]
+
+# CSRF settings
+CSRF_TRUSTED_ORIGINS = [
+    'https://fastapi-app.liara.run',
+    'http://fastapi-app.liara.run',
+]
 
 
 # Application definition
@@ -90,11 +101,14 @@ WSGI_APPLICATION = 'config.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': os.getenv('DB_NAME', 'certificate_db'),
-        'USER': os.getenv('DB_USER', 'postgres'),
-        'PASSWORD': os.getenv('DB_PASSWORD', 'postgres123'),
-        'HOST': os.getenv('DB_HOST', 'db'),
-        'PORT': os.getenv('DB_PORT', '5432'),
+        'NAME': 'certificate_db',
+        'USER': 'root',
+        'PASSWORD': 'vkoCPvy3OSyZ9xE57sqF0mZU',
+        'HOST': 'certificate-db',
+        'PORT': '5432',
+        'OPTIONS': {
+            'sslmode': 'disable'  # Add this to disable SSL requirement
+        }
     }
 }
 
