@@ -24,9 +24,11 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 # Create a non-root user first
 RUN useradd -m appuser
 
-# Copy only requirements first to leverage Docker cache
-COPY --chown=appuser:appuser requirements/ requirements/
-RUN pip install --no-cache-dir -r requirements/django.txt
+# Copy requirements file
+COPY --chown=appuser:appuser requirements.txt .
+
+# Install Python dependencies
+RUN pip install --no-cache-dir -r requirements.txt
 
 # Copy project files with correct ownership
 COPY --chown=appuser:appuser . .
@@ -39,7 +41,7 @@ RUN mkdir -p /app/static && \
 USER appuser
 
 # Expose port
-# EXPOSE 8000
+EXPOSE 8000
 
 # Command to run the application
 CMD ["gunicorn", "config.wsgi:application", "--bind", "0.0.0.0:8000"] 
