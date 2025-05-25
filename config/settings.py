@@ -13,6 +13,11 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 from datetime import timedelta
 from pathlib import Path
 import os
+import dj_database_url
+from dotenv import load_dotenv
+
+load_dotenv()
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -99,17 +104,9 @@ WSGI_APPLICATION = 'config.wsgi.application'
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'certificate_db',
-        'USER': 'root',
-        'PASSWORD': 'vkoCPvy3OSyZ9xE57sqF0mZU',
-        'HOST': 'certificate-db',
-        'PORT': '5432',
-        'OPTIONS': {
-            'sslmode': 'disable'  # Add this to disable SSL requirement
-        }
-    }
+    'default': dj_database_url.config(
+        default='postgresql://root:vkoCPvy3OSyZ9xE57sqF0mZU@certificate-db:5432/postgres'
+    )
 }
 
 
