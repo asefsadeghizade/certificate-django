@@ -7,7 +7,8 @@ passlib==1.7.4
 python-multipart==0.0.6
 requests==2.31.0
 qrcode==7.4.2
-Pillow==10.1.0 
+Pillow==10.1.0
+dj-database-url==2.1.0
 
 # Django and related packages
 Django==5.0.1
