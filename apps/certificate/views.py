@@ -13,7 +13,7 @@ from .utils import generate_qr_code
 
 
 class StudentFilter(filters.FilterSet):
-    """Filter for Student model."""
+    """Filter for tudent model."""
     name = filters.CharFilter(method='filter_by_name')
     date_of_birth_after = filters.DateFilter(
         field_name='date_of_birth', lookup_expr='gte')
