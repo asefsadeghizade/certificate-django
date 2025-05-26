@@ -2,6 +2,7 @@ import qrcode
 from io import BytesIO
 from django.conf import settings
 from django.urls import reverse
+import os
 
 
 def generate_qr_code(certificate):
@@ -10,7 +11,12 @@ def generate_qr_code(certificate):
     The QR code will contain a URL to validate the certificate using the validation service.
     """
     # Generate the validation URL using the validation service
-    validation_url = settings.VALIDATION_SERVICE_URL + "/validate"
+    # validation_url = settings.VALIDATION_SERVICE_URL + "/validate"
+    VALIDATION_SERVICE_URL = os.getenv(
+        "VALIDATION_SERVICE_URL", "http://localhost:8001")
+
+    validation_url = VALIDATION_SERVICE_URL + "/validate"
+
     qr_data = f"{validation_url}?code={certificate.unique_code}"
 
     # Create QR code instance

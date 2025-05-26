@@ -2,11 +2,12 @@ import psycopg2
 
 try:
     conn = psycopg2.connect(
-        dbname="certificate_db",
+        dbname="postgres",
         user="root",
         password="vkoCPvy3OSyZ9xE57sqF0mZU",
         host="certificate-db",
-        port="5432"
+        port="5432",
+        options="-c sslmode=disable"
     )
     print("Successfully connected to the database!")
     conn.close()

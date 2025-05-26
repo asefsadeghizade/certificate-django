@@ -10,7 +10,8 @@ ENV PYTHONDONTWRITEBYTECODE=1 \
     DB_USER=root \
     DB_PASSWORD=vkoCPvy3OSyZ9xE57sqF0mZU \
     DB_HOST=db \
-    DB_PORT=5432
+    DB_PORT=5432 \
+    VALIDATION_SERVICE_URL=https://actualfastapi-app.liara.run/api/v1
 
 # Set work directory
 WORKDIR /app
