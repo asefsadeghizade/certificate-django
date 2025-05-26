@@ -37,7 +37,8 @@ COPY --chown=appuser:appuser . .
 
 # Create static directory and collect static files
 RUN mkdir -p /app/static && \
-    python manage.py collectstatic --noinput
+    python manage.py collectstatic --noinput && \
+    chown -R appuser:appuser /app/staticfiles
 
 # Switch to non-root user
 USER appuser
