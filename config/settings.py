@@ -36,7 +36,10 @@ ALLOWED_HOSTS = [
     'localhost',
     '127.0.0.1',
     'fastapi-app.liara.run',
-    '.liara.run'  # This will allow all subdomains of liara.run
+    '.liara.run',  # This will allow all subdomains of liara.run
+    'fastapi-app',
+    'actualfastapi-app',
+    'prometheus'
 ]
 
 # CSRF settings
